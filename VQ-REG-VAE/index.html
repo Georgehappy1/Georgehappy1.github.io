@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>demo</title>
+</head>
+<body>
+<h1 align="center">基于矢量量化正则变分自编码器的非平行语音转换系统</h1>
+<p align="center"><b>语音转换样例</b></p>
+
+<!--<h3>语音转换样例:</h3>-->
+</body>
+<p class="lead">女(p225) → 男(p226)</p>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th></th>
+        <th>源说话人</th>
+        <th>目标说话人</th>
+        <th>VQVAE<br>(基线模型)</th>
+        <th id="strong">VQ-REG-VAE<br>(提出模型)</th>
+        <th id="strong">Text</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th scope="row">Sample 1</th>
+        <td>
+            <audio controls="">
+                <source src="225/p225_001.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <audio controls="">
+                <source src="226/p226_001.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+
+        <td>
+            <audio controls="">
+                <source src="demo/225_226_baseline/1.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <audio controls="">
+                <source src="demo/225_226_proposed/1.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <p>Please call Stella.</p>
+        </td>
+
+    </tr>
+
+    <tr>
+        <th scope="row">Sample 2</th>
+       <td>
+            <audio controls="">
+                <source src="225/p225_010.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <audio controls="">
+                <source src="226/p226_010.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <audio controls="">
+                <source src="demo/225_226_baseline/10.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <audio controls="">
+                <source src="demo/225_226_proposed/10.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <p>People look, but no one ever finds it.</p>
+        </td>
+    </tr>
+
+    <tr>
+        <th scope="row">Sample 3</th>
+     <td>
+            <audio controls="">
+                <source src="225/p225_013.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <audio controls="">
+                <source src="226/p226_013.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <audio controls="">
+                <source src="demo/225_226_baseline/13.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <audio controls="">
+                <source src="demo/225_226_proposed/13.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <p>Some have accepted it as a miracle without physical explanation.</p>
+        </td>
+    </tr>
+
+    </tbody>
+</table>
+
+<p class="lead">男(p227) → 女(p228)</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th></th>
+        <th>源说话人</th>
+        <th>目标说话人</th>
+        <th>VQVAE<br>(基线模型)</th>
+        <th id="strong">VQ-REG-VAE<br>(提出模型)</th>
+        <th id="strong">Text</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th scope="row">Sample 1</th>
+        <td>
+            <audio controls="">
+                <source src="227/p227_002.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <audio controls="">
+                <source src="228/p228_002.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <audio controls="">
+                <source src="demo/227_228_baseline/2.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <audio controls="">
+                <source src="demo/227_228_proposed/2.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <p>Ask her to bring these things with her from the store.</p>
+        </td>
+
+    </tr>
+
+    <tr>
+        <th scope="row">Sample 2</th>
+       <td>
+            <audio controls="">
+                <source src="227/p227_005.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <audio controls="">
+                <source src="228/p228_005.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <audio controls="">
+                <source src="demo/227_228_baseline/5.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <audio controls="">
+                <source src="demo/227_228_proposed/5.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <p>She can scoop these things into three red bags, and we will go meet her Wednesday at the train station.</p>
+        </td>
+    </tr>
+
+    <tr>
+        <th scope="row">Sample 3</th>
+     <td>
+            <audio controls="">
+                <source src="227/p227_004.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <audio controls="">
+                <source src="228/p228_004.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <audio controls="">
+                <source src="demo/227_228_baseline/4.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <audio controls="">
+                <source src="demo/227_228_proposed/4.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+         <td>
+            <p>We also need a small plastic snake and a big toy frog for the kids.</p>
+        </td>
+    </tr>
+
+    </tbody>
+</table>
+
+<p class="lead">男(p226) → 男(p227)</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th></th>
+        <th>源说话人</th>
+        <th>目标说话人</th>
+        <th>VQVAE<br>(基线模型)</th>
+        <th id="strong">VQ-REG-VAE<br>(提出模型)</th>
+         <th id="strong">Text</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th scope="row">Sample 1</th>
+        <td>
+            <audio controls="">
+                <source src="226/p226_002.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <audio controls="">
+                <source src="227/p227_002.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <audio controls="">
+                <source src="demo/226_227_baseline/2.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <audio controls="">
+                <source src="demo/226_227_proposed/2.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <p>Ask her to bring these things with her from the store.</p>
+        </td>
+
+    </tr>
+
+    <tr>
+        <th scope="row">Sample 2</th>
+       <td>
+            <audio controls="">
+                <source src="226/p226_011.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <audio controls="">
+                <source src="227/p227_011.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <audio controls="">
+                <source src="demo/226_227_baseline/11.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <audio controls="">
+                <source src="demo/226_227_proposed/11.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+         <td>
+            <p>When a man looks for something beyond his reach, his friends say he is looking for the pot of gold at the end of the rainbow. </p>
+        </td>
+    </tr>
+
+    <tr>
+        <th scope="row">Sample 3</th>
+     <td>
+            <audio controls="">
+                <source src="226/p226_009.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <audio controls="">
+                <source src="227/p227_009.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <audio controls="">
+                <source src="demo/226_227_baseline/9.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <audio controls="">
+                <source src="demo/226_227_proposed/9.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <p>There is , according to legend, a boiling pot of gold at one end. </p>
+        </td>
+    </tr>
+
+    </tbody>
+</table>
+
+<p class="lead">女(p228) → 女(p225)</p>
+<table class="table">
+    <thead>
+    <tr>
+        <th></th>
+        <th>源说话人</th>
+        <th>目标说话人</th>
+        <th>VQVAE<br>(基线模型)</th>
+        <th id="strong">VQ-REG-VAE<br>(提出模型)</th>
+        <th id="strong">Text</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <th scope="row">Sample 1</th>
+        <td>
+            <audio controls="">
+                <source src="228/p228_001.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <audio controls="">
+                <source src="225/p225_001.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <audio controls="">
+                <source src="demo/228_225_baseline/1.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <audio controls="">
+                <source src="demo/228_225_proposed/1.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <p>Please call Stella.</p>
+        </td>
+
+    </tr>
+
+    <tr>
+        <th scope="row">Sample 2</th>
+       <td>
+            <audio controls="">
+                <source src="228/p228_002.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <audio controls="">
+                <source src="225/p225_002.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <audio controls="">
+                <source src="demo/228_225_baseline/2.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <audio controls="">
+                <source src="demo/228_225_proposed/2.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <p>Ask her to bring these things with her from the store.</p>
+        </td>
+
+    </tr>
+
+    <tr>
+        <th scope="row">Sample 3</th>
+     <td>
+            <audio controls="">
+                <source src="228/p228_012.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <audio controls="">
+                <source src="225/p225_012.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <audio controls="">
+                <source src="demo/228_225_baseline/12.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <audio controls="">
+                <source src="demo/228_225_proposed/12.wav" type="audio/wav">
+                Your browser does not support the audio element.
+            </audio>
+        </td>
+        <td>
+            <p>Throughout the centuries people have explained the rainbow in various ways.</p>
+        </td>
+    </tr>
+
+    </tbody>
+</table>
+
+<!--<audio controls> <source src="1.wav" type="audio/wav"></audio>-->
